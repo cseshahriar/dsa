@@ -18,7 +18,6 @@ python:
 * Variables/Keywords/Identifiers/Comments/Operator/Data Types
 * Input & Output in Python
 
-
 # Today's Agenda
 * Control Statements
 * Loops
@@ -35,3 +34,29 @@ DSA:
 * Graphs
 * Backtracking
 * Dynamic Programming
+
+A programming language is a formal language that provides instructions for a computer to execute. 
+It's how humans communicate with computers to create software, applications, and other technology
+
+# High Level Programming Language vs Low Level Programming Language
+
+### High Level programming language: Like humans language
+* Java
+* Python
+* C++
+
+### Low Level programming language like 0,1
+* 0110001
+* 0100100
+
+### Compiler
+1. Converts whole code at once
+2. Errors at once
+3. Fast
+
+### Interpreter (Right side notes)
+* Line by line execute
+* errors line by line
+* slow
+
+# compiling process: HLL -> Analysis -> convert to LLL -> execute -> output
