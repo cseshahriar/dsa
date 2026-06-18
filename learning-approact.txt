@@ -1,0 +1,37 @@
+Note: practice practice practice and problem solving
+
+python:
+-------
+# Complete Series Python Plan
+* Python Basics/Prerequisite
+* Functions, Lambda Functions and Recursion
+* Time & Space Complexity Analysis
+* Lists, Tuples and Strings
+* Searching and Sorting
+* Sets and Dictionary / Hassing
+
+# Today's Agenda
+* What is a Programming Language?
+* High Level Programming Language vs Low Level Programming Language
+* Compiler vs Interpreter
+* Introduction to Python
+* Variables/Keywords/Identifiers/Comments/Operator/Data Types
+* Input & Output in Python
+
+
+# Today's Agenda
+* Control Statements
+* Loops
+* Functions
+* Problems on Control Statements and Loops
+* Problems on Functions
+* Assignments
+
+DSA:
+# Complete Series DSA Plan
+* Linked List
+* Stack and Queues
+* Binary Tree and Binary Search Tree
+* Graphs
+* Backtracking
+* Dynamic Programming
