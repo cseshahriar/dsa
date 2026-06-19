@@ -60,3 +60,22 @@ It's how humans communicate with computers to create software, applications, and
 * slow
 
 # compiling process: HLL -> Analysis -> convert to LLL -> execute -> output
+
+
+# Introduction to Python
+Python is a versatile, high-level, general-purpose programming language designed for readability and ease of use.
+
+### Popular for
+* Backend ***
+* Automation / Scripting ***
+* AI / ML / DS *(Artificial Intelligence / Machine Learning / Data Science)*
+
+### Key Characteristics
+* Interpreted
+* High-level
+* Object-oriented
+* Extensive libraries
+* Beginner-friendly
+
+
+Ref: https://www.youtube.com/playlist?list=PLxgZQoSe9cg2DC5wMlW7d0zvSkRXlTobC
