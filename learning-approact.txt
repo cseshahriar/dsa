@@ -77,5 +77,41 @@ Python is a versatile, high-level, general-purpose programming language designed
 * Extensive libraries
 * Beginner-friendly
 
+# ============= Complexity
+1. Time Complexity
+2. Space Complexity
+
+* Time Complexity
+* Asymptotic Notations
+* Types of Time Complexities
+* Comparison of Time Complexities
+* Space Complexity
+* Examples
+
+* Introduction to Recursion
+* Loops vs Recursion
+* Print 1 to n using Recursion
+* Recursive Stack
+* Recursive Tree
+* Practice Problems
+
+Time complexity in computer science describes how the execution time of an algorithm grows as the input size increases. It essentially quantifies the number of operations an algorithm performs as a function of the input data size.
+# Time complexity is Number of operations
+
+## Asymptotic Notations
+* Best Case (Ω Omega$)
+* Average Case (θ theta$)
+* Worst Case (O)
+
+## Types of Time Complexities
+Time complexities are categorized based on how an algorithm's runtime scales with the input size. 
+Common types include constant time (O(1)), logarithmic time (O(log n)), linear time (O(n)), quadratic time (O(n^2)), and exponential time (O(2^n)).
+
+## Comparison of Time Complexities
+O(1) < O(\log n) < O(n) < O(n \log n) < O(n^2) < O(2^n) < O(n!)
+
+
+## Introduction to Recursion
+The process in which a function calls itself directly or indirectly is called recursion and the corresponding function is called a recursive function.
 
 Ref: https://www.youtube.com/playlist?list=PLxgZQoSe9cg2DC5wMlW7d0zvSkRXlTobC
