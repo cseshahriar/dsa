@@ -43,6 +43,7 @@ print(names)
 
 # min
 numbers = [1, 3, 4, 2, 6, 7]
+numbeers2 = numbers # deep copy | refrence copy
 print(min(numbers))
 
 # max
@@ -62,7 +63,7 @@ print(numbers.sort(reverse=True))
 print(numbers.reverse())  # O(N)
 
 # copy
-names.extend(numbers.copy())
+names.extend(numbers.copy())  # values copy / shallow copy
 print(names)
 
 # index
