@@ -70,7 +70,67 @@ print(names)
 print(numbers.index(1))
 
 
-# Touple
+# Tuple: can't modify, ordered, immutable, allow duplicate
+print("\ntuple")
+my_tuple = ("hello", 123, 23,1,2,3)
+print(my_tuple)
+print(my_tuple[-1])
+print(len(my_tuple))
+print(my_tuple[0:2])
+print(my_tuple.count(1))
+print(my_tuple.index(1))
+print(id(my_tuple))
+my_tuple_lit = list(my_tuple)
+print(my_tuple_lit)
 
 # String
 name = "Shahriar"
+grade = "A"
+company = " Shahriar Tech"
+intro = """My name is Shahriar
+I am a programmer"""
+
+print(name)
+
+# operations
+# len
+print(len(name))
+
+# negative index
+print(name[1])
+print(name[-1])
+
+# upper
+print(name.upper())
+
+# lower
+print(name.lower())
+
+# capitalize
+print(name.capitalize())
+
+# strip 
+print(company)
+print(company.strip())
+
+# split
+print(intro.split(" "))
+
+# replace
+print(company)
+company.replace("Tech", "tech")
+print(company)
+
+# slicing
+print(company[1:9])
+
+# startswith
+print(name.startswith('S'))
+# endswith
+print(name.endswith('r'))
+
+# find
+print(name.find('S'))
+
+# index
+print(name.index('S'))
