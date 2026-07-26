@@ -1,0 +1,514 @@
+Space Complexity অনেকেই প্রথমে কঠিন মনে করে, কিন্তু আসলে এটা খুব সহজ।
+
+---
+
+# Space Complexity কী?
+
+**Space Complexity = Algorithm চলার সময় অতিরিক্ত কত Memory (RAM) ব্যবহার করছে।**
+
+এখানে "অতিরিক্ত" কথাটা গুরুত্বপূর্ণ।
+
+ধরো তোমার কাছে আগে থেকেই একটি list আছে।
+
+```python
+nums = [1, 2, 3, 4, 5]
+```
+
+এই list-এর memory সাধারণত input-এর অংশ হিসেবে ধরা হয়। Space Complexity হিসাব করার সময় আমরা দেখি **algorithm নিজে আর কত memory নিচ্ছে**।
+
+---
+
+# Example 1: O(1) Space
+
+```python
+def find_sum(nums):
+    total = 0
+
+    for num in nums:
+        total += num
+
+    return total
+```
+
+ধরি
+
+```python
+nums = [10, 20, 30, 40, 50]
+```
+
+Memory-তে কী আছে?
+
+```
+nums  -> Input (আগেই ছিল)
+total -> 1টি variable
+num   -> 1টি loop variable
+```
+
+এখানে যত বড় list-ই হোক,
+
+```
+১০টা element
+
+বা
+
+১০ লাখ element
+```
+
+`total` এবং `num`-এর সংখ্যা একই থাকে।
+
+তাই
+
+```
+Space = O(1)
+```
+
+---
+
+# Memory Visualization
+
+```
+Input
+
+nums
+──────────────
+10
+20
+30
+40
+50
+
+Extra Memory
+
+total
+num
+```
+
+শুধু ২টা variable।
+
+---
+
+# Example 2: O(n)
+
+```python
+def square(nums):
+    result = []
+
+    for num in nums:
+        result.append(num * num)
+
+    return result
+```
+
+যদি
+
+```
+nums
+
+1
+2
+3
+4
+```
+
+তাহলে
+
+```
+result
+
+1
+4
+9
+16
+```
+
+Input যত বড় হবে
+
+Result-ও তত বড় হবে।
+
+```
+n elements
+
+↓
+
+result এও n elements
+```
+
+তাই
+
+```
+Space = O(n)
+```
+
+---
+
+## Memory
+
+```
+nums
+
+1
+2
+3
+4
+
+↓
+
+result
+
+1
+4
+9
+16
+```
+
+একটা নতুন list তৈরি হয়েছে।
+
+---
+
+# Example 3: O(2n)
+
+```python
+copy1 = nums.copy()
+copy2 = nums.copy()
+```
+
+যদি
+
+```
+nums
+
+1
+2
+3
+4
+```
+
+তাহলে
+
+```
+copy1
+
+1
+2
+3
+4
+
+copy2
+
+1
+2
+3
+4
+```
+
+Memory
+
+```
+n + n
+
+=2n
+```
+
+Big O-তে Constant বাদ যায়।
+
+তাই
+
+```
+O(2n)
+
+↓
+
+O(n)
+```
+
+---
+
+# Example 4: O(n²)
+
+```python
+matrix = []
+
+for i in range(n):
+    row = []
+
+    for j in range(n):
+        row.append(0)
+
+    matrix.append(row)
+```
+
+যদি
+
+```
+n = 3
+```
+
+Memory
+
+```
+0 0 0
+0 0 0
+0 0 0
+```
+
+Total
+
+```
+3 × 3 = 9
+```
+
+যদি
+
+```
+n = 1000
+```
+
+Memory
+
+```
+1000 ×1000
+
+=1,000,000 values
+```
+
+তাই
+
+```
+Space
+
+O(n²)
+```
+
+---
+
+# Recursive Function
+
+```python
+def countdown(n):
+    if n == 0:
+        return
+
+    countdown(n - 1)
+```
+
+যদি
+
+```
+countdown(5)
+```
+
+Memory
+
+```
+countdown(5)
+
+↓
+
+countdown(4)
+
+↓
+
+countdown(3)
+
+↓
+
+countdown(2)
+
+↓
+
+countdown(1)
+
+↓
+
+countdown(0)
+```
+
+প্রতিটি function call Stack-এ থাকে।
+
+মোট
+
+```
+5 Stack Frame
+```
+
+তাই
+
+```
+Space = O(n)
+```
+
+---
+
+# Binary Search কেন O(log n) Space হতে পারে?
+
+Recursive Binary Search
+
+```python
+def binary_search(arr, left, right, target):
+    if left > right:
+        return -1
+
+    mid = (left + right) // 2
+
+    if arr[mid] == target:
+        return mid
+
+    elif arr[mid] > target:
+        return binary_search(arr, left, mid - 1, target)
+
+    else:
+        return binary_search(arr, mid + 1, right, target)
+```
+
+প্রতি Call-এ Range অর্ধেক হয়ে যায়।
+
+```
+1024
+
+↓
+
+512
+
+↓
+
+256
+
+↓
+
+128
+
+↓
+
+...
+
+↓
+
+1
+```
+
+মোট Call
+
+```
+10
+```
+
+তাই Stack-এও
+
+```
+10 Frame
+```
+
+```
+Space
+
+O(log n)
+```
+
+---
+
+# কিন্তু Iterative Binary Search?
+
+```python
+while left <= right:
+    ...
+```
+
+এখানে কোনো recursion নেই।
+
+শুধু
+
+```
+left
+
+right
+
+mid
+```
+
+এই ৩টা variable।
+
+তাই
+
+```
+Space
+
+O(1)
+```
+
+এটাই Interview-তে অনেক জিজ্ঞেস করা হয়।
+
+---
+
+# Time vs Space
+
+```python
+def reverse(nums):
+    return nums[::-1]
+```
+
+Time
+
+```
+সব element একবার copy করতে হবে
+
+O(n)
+```
+
+Space
+
+```
+নতুন list তৈরি হচ্ছে
+
+O(n)
+```
+
+---
+
+আর যদি
+
+```python
+nums.reverse()
+```
+
+তাহলে
+
+Time
+
+```
+O(n)
+```
+
+Space
+
+```
+O(1)
+```
+
+কারণ নতুন list তৈরি হচ্ছে না; একই list-এর ভিতরেই element-গুলো অদলবদল হচ্ছে।
+
+---
+
+# Interview Shortcut
+
+| Code                       | Time     | Space    | কেন                   |
+| -------------------------- | -------- | -------- | --------------------- |
+| `total += num`             | O(n)     | O(1)     | শুধু কয়েকটি variable |
+| `result.append(...)`       | O(n)     | O(n)     | নতুন list তৈরি হচ্ছে  |
+| `nums.copy()`              | O(n)     | O(n)     | পুরো list copy হচ্ছে  |
+| Nested `n × n` array       | O(n²)    | O(n²)    | `n²` element সংরক্ষণ  |
+| Recursive DFS (worst case) | O(n)     | O(n)     | Call stack            |
+| Recursive Binary Search    | O(log n) | O(log n) | Call stack-এর গভীরতা  |
+| Iterative Binary Search    | O(log n) | O(1)     | শুধু কয়েকটি variable |
+
+## একটি সহজ নিয়ম
+
+Space Complexity বোঝার সময় নিজেকে এই প্রশ্নটি করো:
+
+> **"Input বাদ দিলে, আমার algorithm নতুন করে কত memory তৈরি করছে?"**
+
+* শুধু কিছু variable? → **O(1)**
+* `n` size-এর নতুন list/dict/set? → **O(n)**
+* `n × n` matrix? → **O(n²)**
+* Recursion? → **Call stack-ও memory ব্যবহার করে**, সেটাও Space Complexity-তে ধরা হয়।
+
+এই একটি নিয়ম মাথায় রাখলে বেশিরভাগ Space Complexity সহজেই বের করতে পারবে।

@@ -1,0 +1,22 @@
+Data Structure types:
+--------------------
+
+1. Linear Data Structure
+    a. Array
+    b. Stack
+    c. Linked List
+    d. Queue
+
+2. Non Linear Data Structure
+    a. Tree
+    b. Graph
+    c. Tries
+
+
+Algorithms:
+-----------
+a. Search
+b. Sort
+c. Insert
+d. Update 
+e. Delete

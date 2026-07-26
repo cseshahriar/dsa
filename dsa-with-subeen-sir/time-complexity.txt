@@ -1,0 +1,661 @@
+যেহেতু তুমি Python/Django backend interview-এর প্রস্তুতি নিচ্ছ, তাই **Time Complexity** এবং **Space Complexity** খুব ভালোভাবে বোঝা দরকার। আর Complexity বুঝতে হলে **logarithm (log)** বুঝতে হবে। আমি একদম সহজভাবে বুঝাই।
+
+---
+
+# প্রথমে Complexity কী?
+
+ধরো তোমার কাছে ১০০০ জন ছাত্রের তালিকা আছে।
+
+তুমি একজন ছাত্রকে খুঁজতে চাও।
+
+যত বড় ডাটা হবে, প্রোগ্রাম তত ধীরে চলতে পারে।
+
+Complexity বলে—
+
+> **Input (n) যত বাড়বে, Algorithm কত দ্রুত Slow হবে?**
+
+এখানে
+
+```
+n = input size
+```
+
+যেমন
+
+```
+10 items
+100 items
+1000 items
+1000000 items
+```
+
+---
+
+# Big O Notation
+
+Big O দিয়ে Worst Case Performance বোঝানো হয়।
+
+সবচেয়ে Common Complexity
+
+```
+O(1)
+O(log n)
+O(n)
+O(n log n)
+O(n²)
+O(2^n)
+O(n!)
+```
+
+এগুলো Fast থেকে Slow।
+
+```
+O(1)
+    ↓
+O(log n)
+    ↓
+O(n)
+    ↓
+O(n log n)
+    ↓
+O(n²)
+    ↓
+O(2^n)
+    ↓
+O(n!)
+```
+
+---
+
+# O(1)
+
+Constant Time
+
+Input যতই বাড়ুক Time একই থাকবে।
+
+```python
+arr = [5,10,15,20]
+
+print(arr[2])
+```
+
+এখানে
+
+```
+১টা item হোক
+
+১০ লাখ item হোক
+
+arr[2]
+
+সবসময় একই সময় লাগবে।
+```
+
+তাই
+
+```
+O(1)
+```
+
+---
+
+# O(n)
+
+Linear Time
+
+সবগুলো দেখতে হবে।
+
+```python
+for x in arr:
+    print(x)
+```
+
+যদি
+
+```
+10 items
+
+→ 10 বার loop
+```
+
+```
+100 items
+
+→100 বার loop
+```
+
+```
+1000 items
+
+→1000 বার loop
+```
+
+অর্থাৎ
+
+```
+n
+```
+
+তাই
+
+```
+O(n)
+```
+
+---
+
+# এখন আসল জিনিস
+
+## Logarithm কী?
+
+Log মানে হলো
+
+**"কতবার Divide করলে ১ এ পৌঁছাবে?"**
+
+ধরো
+
+```
+1024
+```
+
+প্রতি বার ২ দিয়ে ভাগ দিচ্ছি।
+
+```
+1024
+512
+256
+128
+64
+32
+16
+8
+4
+2
+1
+```
+
+কতবার ভাগ দিলাম?
+
+```
+10 বার
+```
+
+কারণ
+
+```
+2^10 =1024
+```
+
+তাই
+
+```
+log₂(1024)=10
+```
+
+---
+
+আরেকটা
+
+```
+16
+
+16
+8
+4
+2
+1
+```
+
+কতবার?
+
+```
+4
+```
+
+কারণ
+
+```
+2^4=16
+
+log₂16=4
+```
+
+---
+
+আরেকটা
+
+```
+32
+
+32
+16
+8
+4
+2
+1
+```
+
+```
+5 বার
+```
+
+কারণ
+
+```
+2^5=32
+```
+
+---
+
+# তাই log মানে
+
+Divide by 2 repeatedly.
+
+---
+
+# এবার বড় Number
+
+```
+1,000,000
+```
+
+Divide by 2
+
+```
+1000000
+
+500000
+
+250000
+
+125000
+
+...
+
+...
+
+1
+```
+
+মাত্র
+
+```
+প্রায় 20 বার
+```
+
+কারণ
+
+```
+2^20 ≈ 1,048,576
+```
+
+অর্থাৎ
+
+```
+১০ লাখ item
+
+শুধু ২০ step
+```
+
+এটাই Log-এর ম্যাজিক।
+
+---
+
+# তাহলে O(log n) কী?
+
+Input যত বড় হবে
+
+Time খুব ধীরে বাড়বে।
+
+Example
+
+```
+n=8
+
+৮→৪→২→১
+
+৩ step
+```
+
+```
+n=16
+
+৪ step
+```
+
+```
+n=32
+
+৫ step
+```
+
+```
+n=1024
+
+১০ step
+```
+
+দেখো
+
+```
+Input
+
+8
+
+16
+
+32
+
+1024
+
+1048576
+```
+
+Step
+
+```
+3
+
+4
+
+5
+
+10
+
+20
+```
+
+এজন্য
+
+```
+O(log n)
+```
+
+অনেক Fast।
+
+---
+
+# Binary Search
+
+এটাই সবচেয়ে Famous Logarithm Example।
+
+ধরো Number আছে
+
+```
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+```
+
+তুমি
+
+```
+14
+```
+
+খুঁজবে।
+
+তুমি কি ১ থেকে শুরু করবে?
+
+না।
+
+মাঝখানে যাবে।
+
+```
+8
+```
+
+```
+14 >8
+
+ডান পাশে যাও।
+```
+
+এখন
+
+```
+9 10 11 12 13 14 15 16
+```
+
+আবার মাঝখানে
+
+```
+12
+```
+
+```
+14>12
+```
+
+আবার
+
+```
+13 14 15 16
+```
+
+আবার মাঝখানে
+
+```
+14
+```
+
+পেয়ে গেলে।
+
+মাত্র
+
+```
+3 step
+```
+
+১৬টা Number হয়েও।
+
+এটাই
+
+```
+Binary Search
+
+O(log n)
+```
+
+---
+
+# Python Example
+
+```python
+def binary_search(arr, target):
+    left = 0
+    right = len(arr) - 1
+
+    while left <= right:
+        mid = (left + right) // 2
+
+        if arr[mid] == target:
+            return mid
+
+        elif arr[mid] < target:
+            left = mid + 1
+
+        else:
+            right = mid - 1
+
+    return -1
+
+
+nums = [1,2,3,4,5,6,7,8,9,10]
+
+print(binary_search(nums,8))
+```
+
+Complexity
+
+```
+O(log n)
+```
+
+---
+
+# O(n log n)
+
+Sorting Algorithm-এ সবচেয়ে বেশি দেখা যায়।
+
+যেমন
+
+```
+Merge Sort
+
+Heap Sort
+
+Tim Sort (Python sorted())
+```
+
+ধরো
+
+```
+1024 item
+```
+
+```
+log₂1024=10
+```
+
+তাই
+
+```
+1024 ×10
+
+≈10240 operation
+```
+
+অর্থাৎ
+
+```
+O(n log n)
+```
+
+---
+
+# O(n²)
+
+Nested Loop
+
+```python
+for i in arr:
+    for j in arr:
+        print(i, j)
+```
+
+যদি
+
+```
+100 item
+```
+
+তাহলে
+
+```
+100×100
+
+10000
+```
+
+তাই
+
+```
+O(n²)
+```
+
+---
+
+# Space Complexity
+
+এটা Memory Usage।
+
+```python
+arr = []
+
+for i in range(n):
+    arr.append(i)
+```
+
+Memory
+
+```
+n
+```
+
+তাই
+
+```
+Space O(n)
+```
+
+---
+
+```python
+sum = 0
+
+for x in arr:
+    sum += x
+```
+
+Extra Memory
+
+```
+একটা Variable
+```
+
+তাই
+
+```
+Space O(1)
+```
+
+---
+
+# সহজে মনে রাখার উপায়
+
+| Complexity | সহজ অর্থ                         | উদাহরণ                         |
+| ---------- | -------------------------------- | ------------------------------ |
+| O(1)       | সবসময় একই সময়                    | Array index access             |
+| O(log n)   | বারবার অর্ধেক করা                | Binary Search                  |
+| O(n)       | সবগুলো একবার দেখা                | Single loop                    |
+| O(n log n) | Efficient sorting                | Merge Sort, Python `sorted()`  |
+| O(n²)      | প্রত্যেকের সাথে প্রত্যেককে তুলনা | Nested loop                    |
+| O(2ⁿ)      | প্রতিটি সম্ভাবনা চেষ্টা          | Recursive brute force          |
+| O(n!)      | সব permutation                   | Traveling Salesman brute force |
+
+## মনে রাখার একটি বাস্তব উদাহরণ
+
+ধরো তোমার কাছে **১০,০০,০০০ (১০ লাখ) বই** আছে এবং একটি নির্দিষ্ট বই খুঁজবে।
+
+* **O(n)**: এক এক করে খুঁজলে, খারাপ ক্ষেত্রে **১০ লাখ বার** দেখতে হতে পারে।
+* **O(log n)**: যদি বইগুলো সাজানো থাকে এবং প্রতিবার মাঝখান থেকে শুরু করো (Binary Search), তাহলে মাত্র **প্রায় ২০ বার** সিদ্ধান্ত নিলেই বইটি পেয়ে যাবে।
+
+এ কারণেই interview-তে সবাই **O(log n)** algorithm পছন্দ করে—বড় ডেটাতেও এটি অসাধারণ দ্রুত।
+
+DSA শেখার জন্য আমি এই ক্রমে এগোনোর পরামর্শ দেব:
+
+1. Big O (Time & Space Complexity)
+2. Arrays & Strings
+3. HashMap / Dictionary
+4. Two Pointers
+5. Sliding Window
+6. Stack & Queue
+7. Linked List
+8. Binary Search (এখানে log আরও পরিষ্কার হবে)
+9. Trees
+10. Graphs
+11. Dynamic Programming
