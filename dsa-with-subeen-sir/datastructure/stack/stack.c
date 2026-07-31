@@ -1,101 +1,128 @@
 #include <stdio.h>
-/*
-Stack হলো একটি Linear Data Structure যেখানে Last In First Out (LIFO) নিয়ম অনুসরণ করা হয়।
-LIFO = Last In, First Out
-যে element সবার শেষে ঢুকবে, সেটাই সবার আগে বের হবে।
 
-Stack Operations
-Operation | Description                    
---------- | ---------------------
-Push      | নতুন element যোগ করা           
-Pop       | Top element remove করা         
-Peek/Top  | Top element দেখা              
-isEmpty   | Stack খালি কিনা                
-isFull    | Stack পূর্ণ কিনা (Array Stack) 
+#define MAX 5
+
+/*
+Stack হলো একটি Linear Data Structure যেখানে
+LIFO (Last In, First Out) নিয়ম অনুসরণ করা হয়।
+
+LIFO = যে element সবার শেষে ঢুকবে,
+সেটাই সবার আগে বের হবে।
+
+Operations:
+1. Push    -> নতুন element যোগ করা
+2. Pop     -> উপরের element বের করা
+3. Peek    -> উপরের element দেখা
+4. Display -> সব element দেখানো
 */
 
-#define STACK_MAX 100
-int stack[STACK_MAX]; // Stack Array
-int top = -1; // Top initially points to no element
+typedef struct
+{
+    int data[MAX];
+    int top;
+} Stack;
 
-int isEmpty() {
-    return top == -1;
+// Initialize Stack
+void init(Stack *s)
+{
+    s->top = -1;
 }
 
-int isFull() {
-    return top == STACK_MAX - 1;
+// Check if stack is empty
+int isEmpty(Stack *s)
+{
+    return s->top == -1;
 }
 
-// push
-void push(int value) {
-    if(isFull()) { // stack full?
+// Check if stack is full
+int isFull(Stack *s)
+{
+    return s->top == MAX - 1;
+}
+
+// Push operation
+void push(Stack *s, int value)
+{
+    if (isFull(s))
+    {
         printf("Stack Overflow!\n");
-        return;   // অথবা অন্য কোনো error value
+        return;
     }
 
-    // Move top to next position
-    top++;  // Move top to next position
-    
-    stack[top] = value; // Insert value ar top
+    s->top++;
+    s->data[s->top] = value;
+
     printf("%d pushed into stack.\n", value);
 }
 
-// Pop Implementation
-int pop() {
-    // check stack underflow
-    if(isEmpty()) {
-        printf("Stack is Empty!\n");
+// Pop operation
+int pop(Stack *s)
+{
+    if (isEmpty(s))
+    {
+        printf("Stack Underflow!\n");
         return -1;
     }
 
-    // Store top value
-    int value = stack[top];
+    int value = s->data[s->top];
+    s->top--;
 
-    // Move top down
-    top--;
-    
     return value;
 }
 
 // Peek operation
-int peek() { // int never empty return
-    // check stack underflow
-    if(isEmpty()) {
+int peek(Stack *s)
+{
+    if (isEmpty(s))
+    {
         printf("Stack is Empty!\n");
         return -1;
     }
-    return stack[top];
+
+    return s->data[s->top];
 }
 
-void display() {
-    if(isEmpty()) {
+// Display stack
+void display(Stack *s)
+{
+    if (isEmpty(s))
+    {
         printf("Stack is Empty!\n");
         return;
     }
 
-    printf("\nStack Elements (Top to Bottom):\n");
-    
-    for(int i = top; i >= 0; i--) {
-        printf("%d ", stack[i]);
+    printf("Stack (Top -> Bottom): ");
+
+    for (int i = s->top; i >= 0; i--)
+    {
+        printf("%d ", s->data[i]);
     }
+
     printf("\n");
 }
 
-int main() {
+int main()
+{
+    Stack s;
 
-    push(10);
-    push(20);
-    push(30);
-    display();
+    init(&s);
 
-    printf("\nTop Element : %d\n", peek());
-    printf("Popped Element : %d\n", pop());
-    display();
+    push(&s, 10);
+    push(&s, 20);
+    push(&s, 30);
+    push(&s, 40);
+    push(&s, 50);
 
-    if (isEmpty())
-        printf("\nStack is Empty\n");
-    else
-        printf("\nStack is Not Empty\n");
+    display(&s);
+
+    printf("Top Element = %d\n", peek(&s));
+
+    printf("Popped = %d\n", pop(&s));
+    printf("Popped = %d\n", pop(&s));
+
+    display(&s);
+
+    printf("Top Element = %d\n", peek(&s));
 
     return 0;
 }
