@@ -1,0 +1,7 @@
+Array vs Linked List
+--------------------
+1. Memory used - fxied vs dynami size
+2. memory allocation - compile time vs run time
+3. data insert, remove - complex / easy
+4. random access - access / not access
+5. data / node change - easy / complex
