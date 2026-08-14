@@ -44,9 +44,73 @@ Node *create_tree() {
     return two;
 }
 
+// pre order traversal: root, left, right
+void pre_order_traversal(Node *node) {
+    printf("%d ", node->data);
+    
+    // recurssion
+    if(node->left != NULL) { // left a jotokkon null na hocce
+        pre_order_traversal(node->left);
+    }
+
+    // recurssion
+    if(node->right != NULL) { // right a jotokkon null na hocce
+        pre_order_traversal(node->right);
+    }
+}
+
+// post order traversal: left, right, root
+void post_order_traversal(Node *node) {
+    // input: tree, root
+    // visit tree, root, left
+    // visit tree, root, right
+    // visit root 
+    // lef teke root
+    
+    // recurssion
+    if(node->left != NULL) { // left a jotokkon null na hocce
+        post_order_traversal(node->left);
+    }
+
+    // recurssion
+    if(node->right != NULL) { // right a jotokkon null na hocce
+        post_order_traversal(node->right);
+    }
+    printf("%d ", node->data);
+}
+
+
+// in order traversal: left, right, root
+void in_order_traversal(Node *node) {
+    // input: tree, root
+    // visit tree, root, left
+    // visit root 
+    // visit tree, root, right
+    
+    // recurssion
+    if(node->left != NULL) { // left a jotokkon null na hocce
+        in_order_traversal(node->left);
+    }
+
+    printf("%d ", node->data);
+
+    // recurssion
+    if(node->right != NULL) { // right a jotokkon null na hocce
+        in_order_traversal(node->right);
+    }
+}
+
 int main() {
 
     Node *root = create_tree();
-    printf("%d\n", root->data);
+    // printf("%d\n", root->data);
+
+    pre_order_traversal(root);
+    printf("\n");
+    
+    post_order_traversal(root);
+    printf("\n");
+
+    in_order_traversal(root);
     return 0;
 }
